@@ -92,7 +92,8 @@ words_from_dict: List[str]) -> List[str]:
 
 def results():
     """
-    Calls other functions and returns the results of the game
+    Calls other functions and returns the results of the game.
+    Writes the results into results.txt
     """
     letters = generate_grid()
     txtt = []
