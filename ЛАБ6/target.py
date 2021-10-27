@@ -2,7 +2,7 @@
 from typing import List
 import random
 import string
-import urllib.request
+
 def generate_grid() -> List[List[str]]:
     """
     Generates list of lists of letters - i.e. grid for the game.
