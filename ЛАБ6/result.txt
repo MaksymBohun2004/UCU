@@ -1,0 +1,4 @@
+0
+['billy', 'billy', 'bully', 'butyl', 'dilly', 'dullity', 'dully', 'duly', 'duty', 'idly', 'idyl', 'illy', 'lily', 'tidily', 'tidy', 'tilly', 'uily', 'yill', 'yilt', 'yuit']
+['/usr/local/bin/python3', '/users/maxbohun/desktop/оп/лаб6/gamewho.py']
+[]

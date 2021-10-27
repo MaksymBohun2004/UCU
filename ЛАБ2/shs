@@ -1,0 +1,7 @@
+num = float (input("введіть число: "))
+print(num)
+num_rounded= round (num,3)
+pi = 3.14159
+pi_rounded= round (pi,3)
+print (num_rounded == pi_rounded)
+print (num_rounded)
