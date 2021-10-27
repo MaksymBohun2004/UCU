@@ -64,8 +64,6 @@ words_from_dict: List[str]) -> List[str]:
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
-    for i in f:
-        gjg
     pure_words = []
     alphabet = [i for i in string.ascii_lowercase]
     letlist = []
