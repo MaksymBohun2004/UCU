@@ -90,8 +90,8 @@ def results():
     Calls all of the functions and makes them work in unison,
     the game is played through this function and the user
     gets to see results of his play
-    change change change
     """
+    for i  jaan
     letters = generate_grid()
     print(*letters)
     language_part = language_part_gen()
