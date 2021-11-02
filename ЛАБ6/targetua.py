@@ -9,6 +9,7 @@ import random
 def generate_grid():
     """
     Generates a grid of 5 letters
+    Always fails in CMS :-)
     """
     alphabet = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
     letters = []
@@ -19,42 +20,43 @@ def generate_grid():
     return letters
 
 
-def get_words(f, letters):
-    """
+def get_words(file, letters):
+    r"""
     Returns all words from Ukrainian dictionary that
     start with one of the generated letters and are longer that 5 letters,
     in tuples (word, language_part)
+    >>> get_words("base.lst", ['ю', 'щ', 'я', 'ц', 'г']) #doctest: +ELLIPSIS
+    [('габа', 'noun'), ('габро', 'noun'), ('гавин', 'adjective')...
     """
-    dict_of_words = {"noun": "", "verb": "", "adjective": "", "adverb": ""}
-    list_of_tup = []
-    with open(f, encoding="utf-8") as words:
+    dict_of_words = []
+    with open(file, encoding="utf-8") as words:
         for line in words:
-            if line[0] in letters:
-                line = line.split()
-                if len(line[0]) <= 5:
+            line = line.split()
+            if len(line[0]) <= 5:
+                if line[0][0] in letters:
                     if line[1].startswith("/n") or line[1].startswith("noun"):
-                        dict_of_words["noun"] += line[0] + " "
+                        dict_of_words.append((line[0], "noun"))
                     elif line[1].startswith("/v") or line[1].startswith("verb"):
-                        dict_of_words["verb"] += line[0] + " "
+                        dict_of_words.append((line[0], "verb"))
                     elif line[1].startswith("/adj") or line[1].startswith("adj"):
-                        dict_of_words["adjective"] += line[0] + " "
+                        dict_of_words.append((line[0], "adjective"))
                     elif line[1].startswith("/adv") or line[1].startswith("adv"):
-                        dict_of_words["adverb"] += line[0] + " "
-    for i in dict_of_words:
-        words = dict_of_words[i].split()
-        for word in words:
-            list_of_tup.append((word, i))
-    return list_of_tup
+                        dict_of_words.append((line[0], "adverb"))
+    return dict_of_words
 
 
 def check_user_words(user_words, language_part, letters, dict_of_words):
     """
     Checks which of the user words meet the requirements and returns a list
     of words guessed
+    >>> check_user_words(['гаяти', 'гнати', 'ініціалізація', 'узяти', 'щавель'], "verb",\
+['ю', 'щ', 'я', 'ц', 'г'], get_words("base.lst", ['ю', 'щ', 'я', 'ц', 'г']))
+    (['гаяти', 'гнати'], ['гнити', 'гнути', 'гоїти', 'грати', 'гріти', 'густи', \
+'юшити', 'явити', 'яріти', 'ячати'])
     """
     correct_words = []
     missed_words = []
-    for isword in range(len(user_words)):
+    for isword in range(len(user_words) - 1):
         if user_words[isword][0] not in letters or len(user_words[isword]) > 5:
             del user_words[isword]
     for word in dict_of_words:
@@ -88,6 +90,7 @@ def results():
     Calls all of the functions and makes them work in unison,
     the game is played through this function and the user
     gets to see results of his play
+    change change change
     """
     letters = generate_grid()
     print(*letters)
@@ -99,6 +102,3 @@ def results():
         check_user_words(user_words, language_part, letters, dict_of_words)
     print("You guessed ", len(correct_words), " words correctly")
     print("You missed those words: ", *missed_words)
-
-
-print(check_user_words(['гаяти', 'гнати', 'ініціалізація', 'узяти', 'щавель'], "verb", ['ю', 'щ', 'я', 'ц', 'г'], get_words("base.lst", ['ю', 'щ', 'я', 'ц', 'г'])))
