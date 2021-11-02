@@ -11,7 +11,11 @@ def generate_grid():
     Generates a grid of 5 letters
     Always fails in CMS :-)
     """
-    alphabet = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
+    alphabet = ['а', 'б', 'в', 'г', 'ґ', 'д', \
+                'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', \
+                'к', 'л', 'м', 'н', 'о', 'п', 'р', \
+                'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', \
+                'ь', 'ю', 'я']
     letters = []
     while len(letters) < 5:
         let = random.choice(alphabet)
@@ -90,6 +94,7 @@ def results():
     Calls all of the functions and makes them work in unison,
     the game is played through this function and the user
     gets to see results of his play
+    change change change
     """
     letters = generate_grid()
     print(*letters)
@@ -100,4 +105,11 @@ def results():
     correct_words, missed_words = \
         check_user_words(user_words, language_part, letters, dict_of_words)
     print("You guessed ", len(correct_words), " words correctly")
-    print("You missed those words: ", *missed_words)
+    print("You missed", len(missed_words), "words. The words are:", *missed_words)
+    m = "m"
+    while m != "Q":
+        m = input("Press enter to play again, enter Q to quit:\n>>> ")
+        if m == "Q":
+            break
+        else:
+            results()
