@@ -91,7 +91,6 @@ def results():
     the game is played through this function and the user
     gets to see results of his play
     """
-    for i  jaan
     letters = generate_grid()
     print(*letters)
     language_part = language_part_gen()
